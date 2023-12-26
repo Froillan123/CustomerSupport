@@ -1,0 +1,188 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kim's Customer Support</title>
+    <link rel="shortcut icon" type="images/png" href="images/favicon.png">
+
+
+    
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">   
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    
+    <div id="head"></div>
+    <header class="header" id="header">
+        <a class='logo' href='/'><i class='bx bxs-bank'></i>&nbsp;Kim's Customer Support</a>
+        <i class='bx bx-menu' id="menu-icon"></i>
+        <nav class="navbar">
+            <a href="#message">Customer Service</a>
+            <a href="#" id="viewcustomer-link">View Customer</a>
+            <a href="#" id="viewchart-link">View Chart</a>
+        </nav>
+    </header>
+
+    <section class="priority" id="priority">
+        <div class="prio">
+            <p>Priority: PWD No.4,Women With a Child No.3, Senior Citizen No.2, Normal Citizen No.1</p>
+        </div>
+    </section>
+
+    <section class="waiting-counters" id="waiting-counters">
+        <div class="counters">
+            <h3>Counter 1</h3>
+
+            <p style="font-weight: bold;">Current Customer:</p>
+            <div id="currentCustomer1"></div> <!--Here is the tracking of current customer in counter 1-->
+
+            <p style="font-weight: bold;">Waiting:</p>
+            <div id="waitingCustomer1"></div> <!--Here is the tracking of waiting the next in the current customer in counter 1-->
+        </div>
+
+        <div class="counters">
+            <h3>Counter 2</h3> 
+
+            <p style="font-weight: bold;">Current Customer:</p>
+            <div id="currentCustomer2"></div>  <!--Here is the tracking of current customer in counter 2-->
+
+            <p style="font-weight: bold;">Waiting:</p>
+            <div id="waitingCustomer2"></div>  <!--Here is the tracking of waiting the next in the current customer in counter 2-->
+        </div>
+
+        <div class="counters">
+            <h3>Counter 3</h3>
+
+            <p style="font-weight: bold;">Current Customer:</p>
+            <div id="currentCustomer3"></div> <!--Here is the tracking of current customer in counter 3-->
+
+            <p style="font-weight: bold;">Waiting:</p>
+            <div id="waitingCustomer3"></div> <!--Here is the tracking of waiting the next in the current customer in counter 3  -->
+        </div>
+    </section>
+
+    <main>
+        <div class="grid-container">
+            <form class="grid-item form">
+                <h2>Enter Customer Information</h2>
+                <div class="input-box">   
+                    <h3>Enter Your name</h3>
+                    <input type="text" name="name" placeholder="Name:" id="name" required>
+    
+                    <h3>Enter Your Age</h3>
+                    <input type="number" name="" placeholder="age:" id="age" required>
+    
+                    <div class="priority-citizen">
+                        <div class="normal-citizen">
+                            <input type="radio" name="priority" value="1" id="normal-citizen"> <span>Normal Citizen</span>
+                        </div>
+                        <div class="senior">
+                            <input type="radio" name="priority" value="2" id="senior-citizen"> <span>Senior Citizen</span>
+                        </div>
+                        <div class="women">
+                            <input type="radio" name="priority" value="3" id="women-with-child"> <span>Women With Child</span>
+                        </div>
+                        <div class="pwd">
+                            <input type="radio" name="priority" value="4" id="pwd"> <span>PWD</span>
+                        </div>
+                    </div>
+                    <div class="specifypwd" id="diseaseTextbox" style="display: none;">
+                        <input type="text" name="disease" id="disease" placeholder="Type Of Disease" required>
+                    </div>
+                    <div class="concern">
+                        <h3>Your Concern</h3>
+                    <textarea name="message" id="message" cols="10" rows="10"></textarea>
+                </div>
+                </form>
+                <div class="buttonCounter">
+                    <button type="button" class="btn" id="toCounter1">Counter1</button>
+                    <button type="button" class="btn" id="toCounter2">Counter2</button>
+                    <button type="button" class="btn" id="toCounter3">Counter3</button>
+                </div>
+            </div>
+    
+            <section class="counter" id="queueSection1">
+                <center><h3 class="heading">Counter 1</h3></center>
+                <button class="button" >Next Customer</button> 
+                 <!-- Counter boxes will be dynamically generated here -->
+                <div id="counter1Boxes"></div>
+            </section>
+    
+            <section class="counter" id="queueSection2">
+                <center><h3 class="heading">Counter 2</h3></center>
+                <button class="button">Next Customer</button> 
+                 <!-- Counter boxes will be dynamically generated here -->
+                 <div id="counter2Boxes"></div>
+            </section>
+    
+            <section class="counter" id="queueSection3">
+                <center><h3 class="heading">Counter 3</h3></center>
+                <button class="button">Next Customer</button> 
+                 <!-- Counter boxes will be dynamically generated here -->
+                 <div id="counter3Boxes"></div>
+            </section>
+    </main>
+
+
+
+
+
+    
+    <section class="viewcustomer" id="viewcustomer">
+        <div id="close-menu" class="fas fa-times"></div>
+        <div class="customersview">
+            <table class="content-table" id="customers-table">
+                <thead>
+                    <tr>
+                        <th>Name Of Customer</th>
+                        <th>Prio No.</th>
+                        <th>Age</th>
+                        <th>Citizen</th>
+                        <th>Counter</th>
+                    </tr>
+                </thead>
+                <tbody id="customers-table-body">
+                    <!-- Customer rows will be dynamically generated here -->
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+
+    <section class="chart" id="viewchart" style="width: 100%;">
+        <div id="close-menu1" class="fas fa-times"></div>
+        <canvas id="incomeStatementChart"></canvas>
+    </section>
+    
+    
+
+    <!-- this is footer -->
+    <footer class="footer">
+        <div class="footer-text">
+            <p>Copyright &copy; 2023 by Kim's Customer Support | All Rights reserved</p>
+            
+        </div>
+        <div class="social-media">
+            <a href="#"><i class='bx bxl-facebook' ></i></a>
+            <a href="#"><i class='bx bxl-twitter' ></i></a>
+            <a href="#"><i class='bx bxl-instagram' ></i></a>
+            <a href="#"><i class='bx bxl-github'></i></a>
+            <a href="#"><i class='bx bxl-linkedin' ></i></a>
+        </div>
+
+        <div class="footer-iconTop">
+            <a href="#head"><i class='bx bx-up-arrow-alt' ></i></a>
+        </div>
+    </footer>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="js/script.js"></script>
+
+
+</html>
